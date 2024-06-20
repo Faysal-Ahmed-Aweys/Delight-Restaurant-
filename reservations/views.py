@@ -70,3 +70,14 @@ def edit_reservation(request, pk):
         'user': user,
         'error_message': error_message
     })
+
+def cancel_reservation(request, pk):
+    reservation = get_object_or_404(Reservation, id=pk)
+    
+    if request.method == 'POST':
+        reservation.delete()
+        messages.success(request, 'Reservation successfully cancelled!')
+        return redirect('profile')  # Redirect to profile page after deletion
+    
+    # For GET request, render the confirmation page
+    return render(request, 'cancel_reservation_confirmation.html', {'reservation': reservation})

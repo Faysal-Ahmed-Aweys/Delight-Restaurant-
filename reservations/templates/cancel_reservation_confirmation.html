@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Cancel Reservation{% endblock title %}
+{% block content %}
+<div class="container content-container">
+    <h2>Cancel Reservation</h2>
+    <p>Are you sure you want to Cancel this reservation?</p>
+    <ul class="list-unstyled">
+        <li><strong>User's Full Name:</strong> {{ reservation.user.get_full_name }}</li>
+        <li><strong>User's Email:</strong> {{ reservation.user.email }}</li>
+        <li><strong>Date:</strong> {{ reservation.date|date:"Y-m-d" }}</li>
+        <li><strong>Time:</strong> {{ reservation.time|time:"H:i" }}</li>
+        <li><strong>Number of People:</strong> {{ reservation.num_people }}</li>
+    </ul>
+    <form method="post">
+        {% csrf_token %}
+        <a href="{% url 'profile' %}" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-danger">Confirm Cancel</button>
+    </form>
+</div>
+{% endblock content %}
