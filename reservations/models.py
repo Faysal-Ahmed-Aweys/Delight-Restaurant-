@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
+
+from datetime import datetime
 
 class Reservation(models.Model):
     STATUS_CHOICES = [
@@ -22,15 +25,8 @@ class Reservation(models.Model):
         return f"{self.user.get_full_name()} - {self.date} at {self.time}"
 
     def clean(self):
-        from django.core.exceptions import ValidationError
-        from django.utils import timezone
-        import pytz
+        datetime_combined = timezone.make_aware(datetime.combine(self.date, self.time), timezone=timezone.get_current_timezone())
 
-        # Combine date and time into a single datetime object
-        if self.date and self.time:
-            tz = pytz.timezone('Europe/London')  # Adjust to your timezone
-            datetime_combined = timezone.make_aware(datetime.combine(self.date, self.time), timezone=tz)
-
-            # Validate that the reservation is in the future
-            if datetime_combined <= timezone.now():
-                raise ValidationError("Reservation date and time must be in the future.")
+        # Validate that the reservation is in the future
+        if datetime_combined <= timezone.now():
+            raise ValidationError("Reservation date and time must be in the future.")
