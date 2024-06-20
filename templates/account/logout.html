@@ -1,25 +1,37 @@
-{% extends "account/base_manage.html" %}
-{% load allauth i18n %}
+{% extends "base.html" %}
+{% load i18n allauth account %}
+{% load crispy_forms_tags %}
+
 {% block head_title %}
     {% trans "Sign Out" %}
 {% endblock head_title %}
+
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign Out" %}
-    {% endelement %}
-    {% element p %}
-        {% trans 'Are you sure you want to sign out?' %}
-    {% endelement %}
-    {% url 'account_logout' as action_url %}
-    {% element form method="post" action=action_url no_visible_fields=True %}
-        {% slot body %}
-            {% csrf_token %}
-            {{ redirect_field }}
-        {% endslot %}
-        {% slot actions %}
-            {% element button type="submit" %}
-                {% trans 'Sign Out' %}
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
+<div class="container mt-5 content-container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-10 col-12">
+            <div class="card mb-5">
+                <div class="card-body">
+                    <h1 class="card-title text-center">{% trans "Sign Out" %}</h1>
+
+                    <p class="text-center">{% trans 'Are you sure you want to sign out?' %}</p>
+
+                    {% url 'account_logout' as action_url %}
+                    {% element form method="post" action=action_url no_visible_fields=True %}
+                        {% slot body %}
+                            {% csrf_token %}
+                            {{ redirect_field }}
+                        {% endslot %}
+                        {% slot actions %}
+                            <div class="text-center">
+                                <a href="{% url 'home' %}" class="btn btn-secondary">{% trans 'Cancel' %}</a>
+                                <button type="submit" class="btn bg-navy">{% trans 'Sign Out' %}</button>
+                            </div>
+                        {% endslot %}
+                    {% endelement %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
