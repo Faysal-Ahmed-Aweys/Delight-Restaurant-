@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}Reservations Page{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+    <div class="row">
+        <div class="col-lg-8 mb-4">
+            <form method="post" class="bg-white p-4 rounded shadow-sm border border-dark reservation-form">
+                {% csrf_token %}
+                <h1 class="mb-4">Make Reservation</h1>
+                <div class="mb-3">
+                    <label for="id_date" class="form-label fw-bold">Date:</label>
+                    {{ form.date }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_time" class="form-label fw-bold">Time:</label>
+                    {{ form.time }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_num_people" class="form-label fw-bold">Number of People:</label>
+                    {{ form.num_people }}
+                </div>
+                <input type="hidden" id="id_date_time" name="date_time" value="{{ form.date.value }} {{ form.time.value }}">
+                <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn bg-navy">Make Reservation</button>
+                <div id="error-message" class="error-message">
+                    {% if error_message %}
+                        {{ error_message }}
+                    {% endif %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-4">
+            <div class="bg-light p-4 rounded shadow-sm border border-dark">
+                <h2>Note:</h2>
+                <p>Your reservation will be approved by default and the table will be reserved for you. You will receive an email if anything changes.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
