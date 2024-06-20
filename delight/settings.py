@@ -57,7 +57,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'main',
     'accounts',
-    'reservations'
+    'reservations',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

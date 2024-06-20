@@ -8,7 +8,7 @@ from django.contrib import messages
 def reserve(request):
     if request.user.is_staff:  # Check if the user is staff
         messages.warning(request, 'You are not authorized to view this page.')
-        return redirect('home')  # Redirect to staff dashboard or any other staff-related page
+        return redirect('home')  # Redirect to staff dashboard but for now home page
 
     if request.method == 'POST':
         form = ReservationForm(request.POST)
