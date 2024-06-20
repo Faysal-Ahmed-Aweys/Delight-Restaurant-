@@ -160,6 +160,15 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'account_login'
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
 cloudinary.config( 
     cloud_name = os.environ.get('cloudinary_cloud_name'), 
     api_key = os.environ.get('cloudinary_api_key'), 
