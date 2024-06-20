@@ -45,3 +45,53 @@ class ReservationForm(forms.ModelForm):
                 raise forms.ValidationError("Please select a future time.")
         
         return cleaned_data
+
+class EditReservationForm(forms.ModelForm):
+    date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    time = forms.ChoiceField(choices=[], widget=forms.Select())
+    num_people = forms.ChoiceField(choices=[(i, i) for i in range(1, 7)])
+
+    class Meta:
+        model = Reservation
+        fields = ['date', 'time', 'num_people']
+
+    def __init__(self, *args, **kwargs):
+        super(EditReservationForm, self).__init__(*args, **kwargs)
+        self.fields['time'].choices = self.generate_time_options()
+
+        # Set initial value for time field if instance exists
+        if self.instance and self.instance.time:
+            reservation_time = self.instance.time.strftime("%H:%M")  # Format as HH:MM
+            self.initial['time'] = reservation_time
+
+        # Set minimum date for the date field to tomorrow
+        today = timezone.now().date()
+        tomorrow = today + timedelta(days=1)
+        self.fields['date'].widget.attrs['min'] = tomorrow.strftime('%Y-%m-%d')
+
+    def generate_time_options(self):
+        time_options = []
+
+        for hour in range(9, 21):  # From 9 AM to 8 PM in 24-hour format
+            time_options.append(
+                (
+                    f"{hour:02d}:00",
+                    f"{hour:02d}:00"
+                )
+            )
+
+        return time_options
+
+    def clean(self):
+        cleaned_data = super().clean()
+        date = cleaned_data.get("date")
+        time = cleaned_data.get("time")
+
+        if date and time:
+            # Make the datetime object offset-aware using a timezone
+            tz = pytz.timezone('Europe/London')  # Replace with your timezone
+            datetime_combined = datetime.combine(date, datetime.strptime(time, '%H:%M').time()).replace(tzinfo=tz)
+            if datetime_combined <= timezone.now():
+                raise forms.ValidationError("Please select a future time.")
+        
+        return cleaned_data
