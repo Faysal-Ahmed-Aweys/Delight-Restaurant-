@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Edit Reservation{% endblock title %}
+{% block content %}
+    <section class="container my-5">
+        <div class="row">
+            <div class="col-lg-8 mb-4">
+                <form method="post" class="bg-white p-4 rounded shadow-sm">
+                    {% csrf_token %}
+
+                    <h1 class="mb-4">Edit Reservation</h1>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Full Name: <strong>{{ user.get_full_name }}</strong></label>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Email: <strong>{{ user.email }}</strong></label>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.date.id_for_label }}" class="form-label fw-bold">Date:</label>
+                        {{ form.date }}
+                        {% for error in form.date.errors %}
+                            <p style="color: red;">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.time.id_for_label }}" class="form-label fw-bold">Time:</label>
+                        <select id="{{ form.time.id_for_label }}" name="{{ form.time.name }}" class="form-select">
+                            {% for value, label in form.time.field.choices %}
+                                <option value="{{ value }}" {% if form.time.value == value %}selected{% endif %}>{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                        {% for error in form.time.errors %}
+                            <p style="color: red;">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.num_people.id_for_label }}" class="form-label fw-bold">Number of People:</label>
+                        {{ form.num_people }}
+                        {% for error in form.num_people.errors %}
+                            <p style="color: red;">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="text-md-left">
+                        <a href="{% url 'profile' %}" class="btn btn-secondary">Cancel</a>
+                        <button type="submit" class="btn bg-navy p3">Update Reservation</button>
+                    </div>
+
+                    <div id="error-message" style="color: red; margin-top: 10px;">
+                        {% if error_message %}
+                            <p>{{ error_message }}</p>
+                        {% endif %}
+                        {% for error in form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
