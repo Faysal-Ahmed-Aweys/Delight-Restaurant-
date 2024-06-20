@@ -81,3 +81,14 @@ def cancel_reservation(request, pk):
     
     # For GET request, render the confirmation page
     return render(request, 'cancel_reservation_confirmation.html', {'reservation': reservation})
+
+def delete_reservation(request, pk):
+    reservation = get_object_or_404(Reservation, id=pk)
+    
+    if request.method == 'POST':
+        reservation.delete()
+        messages.success(request, 'Reservation successfully deleted!')
+        return redirect('profile')  # Redirect to profile page after deletion
+    
+    # For GET request, render the confirmation page
+    return render(request, 'delete_reservation_confirmation.html', {'reservation': reservation})
