@@ -1,7 +1,8 @@
-from django.shortcuts import render
-from reservations.models import Reservation
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
+from .forms import UpdateUserForm
+from reservations.models import Reservation
 from datetime import datetime
 from django.db.models import Q
 
@@ -27,3 +28,16 @@ def profile(request):
         'expired_reservations': expired_reservations,
         'success_message': success_message,
     })
+
+def edit_profile(request, pk):
+    user = get_object_or_404(User, pk=pk)
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=user)
+        if user_form.is_valid():
+            user_form.save()
+            messages.success(request, 'Your details have been updated successfully.')
+            return redirect('profile')
+    else:
+        user_form = UpdateUserForm(instance=user)
+
+    return render(request, 'edit_details.html', {'user_form': user_form, 'user': user})
