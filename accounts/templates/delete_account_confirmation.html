@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Delete Account Confirmation Page{% endblock title %}
+
+{% block content %}
+<div class="container content-container">
+<h2>Confirm Account Deletion</h2>
+    <p>Are you sure you want to delete your account?</p>
+    <form action="{% url 'delete_account' user.id %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="confirm">
+        <a href="{% url 'profile' %}" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-danger">Yes, Delete My Account</button>
+    </form>
+</div>
+{% endblock content %}

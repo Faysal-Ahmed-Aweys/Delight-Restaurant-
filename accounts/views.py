@@ -5,6 +5,7 @@ from .forms import UpdateUserForm
 from reservations.models import Reservation
 from datetime import datetime
 from django.db.models import Q
+from django.contrib.auth import logout
 
 # Create your views here.
 def profile(request):
@@ -41,3 +42,24 @@ def edit_profile(request, pk):
         user_form = UpdateUserForm(instance=user)
 
     return render(request, 'edit_details.html', {'user_form': user_form, 'user': user})
+
+def delete_account_confirmation(request, pk):
+    user = User.objects.get(pk=pk)
+    return render(request, 'delete_account_confirmation.html', {'user': user})
+
+def delete_account(request, pk):
+    user = User.objects.get(pk=pk)
+    if request.method == 'POST':
+        if request.POST.get('action') == 'confirm':
+            # Delete the user account
+            user.delete()
+            # Logout the user
+            logout(request)
+            # Add a success message
+            messages.success(request, 'Your account has been successfully deleted.')
+            # Redirect to the home page
+            return redirect('home')
+        else:
+            # User canceled the deletion, redirect back to profile page
+            return redirect('profile')
+    return render(request, 'delete_account_confirmation.html', {'user': user})
