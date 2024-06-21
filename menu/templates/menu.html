@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Menu{% endblock title %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="text-center">
+        <h1 class="bg-dark text-gold display-2 menu-title">Menu</h1>
+        <p class="display-5 lead big">Discover our delicious selection of dishes carefully crafted to tantalize your taste buds.</p>
+        <p class="text-muted font-italic">Click on a menu item name to view full details and an image of the dish.</p>
+    </div>
+
+    <!-- Starters Section -->
+    <div class="menu-section">
+        <h2 class="bg-dark text-gold text-center font-size">Starters</h2>
+        <div class="list-group">
+            {% for starter in starters %}
+                <div class="list-group-item-action" data-toggle="modal" data-target="#starterModal{{ starter.id }}">
+                    <h5 class="mb-4 d-inline-block" style="cursor: pointer;" onmouseover="this.style.textDecoration='underline'; this.style.color='red';" onmouseout="this.style.textDecoration='none'; this.style.color='';">
+                        {{ starter.name }}
+                    </h5>
+                    <span class="float-right">${{ starter.price }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Mains Section -->
+    <div class="menu-section">
+        <h2 class="bg-dark text-gold text-center font-size">Mains</h2>
+        <div class="list-group">
+            {% for main in mains %}
+                <div class="list-group-item-action" data-toggle="modal" data-target="#mainModal{{ main.id }}">
+                    <h5 class="mb-4 d-inline-block" style="cursor: pointer;" onmouseover="this.style.textDecoration='underline'; this.style.color='red';" onmouseout="this.style.textDecoration='none'; this.style.color='';">
+                        {{ main.name }}
+                    </h5>
+                    <span class="float-right">${{ main.price }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Desserts Section -->
+    <div class="menu-section">
+        <h2 class="bg-dark text-gold text-center font-size">Desserts</h2>
+        <div class="list-group">
+            {% for dessert in desserts %}
+                <div class="list-group-item-action" data-toggle="modal" data-target="#dessertModal{{ dessert.id }}">
+                    <h5 class="mb-4 d-inline-block" style="cursor: pointer;" onmouseover="this.style.textDecoration='underline'; this.style.color='red';" onmouseout="this.style.textDecoration='none'; this.style.color='';">
+                        {{ dessert.name }}
+                    </h5>
+                    <span class="float-right">${{ dessert.price }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Modals -->
+{% for item in combined_menu %}
+    <div class="modal fade" id="{{ item.category }}Modal{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="{{ item.category }}Modal{{ item.id }}Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="{{ item.category }}Modal{{ item.id }}Label">{{ item.name }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="{{ item.image.url }}" class="modal-image" alt="{{ item.name }} Image">
+                    <p>{{ item.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% endblock content %}
