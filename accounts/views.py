@@ -5,9 +5,10 @@ from .forms import UpdateUserForm
 from reservations.models import Reservation
 from datetime import datetime
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 
-# Create your views here.
+@login_required
 def profile(request):
     user = request.user
     # Get all reservations for the current user
@@ -30,6 +31,7 @@ def profile(request):
         'success_message': success_message,
     })
 
+@login_required
 def edit_profile(request, pk):
     user = get_object_or_404(User, pk=pk)
     if request.method == 'POST':
@@ -43,10 +45,12 @@ def edit_profile(request, pk):
 
     return render(request, 'edit_details.html', {'user_form': user_form, 'user': user})
 
+@login_required
 def delete_account_confirmation(request, pk):
     user = User.objects.get(pk=pk)
     return render(request, 'delete_account_confirmation.html', {'user': user})
 
+@login_required
 def delete_account(request, pk):
     user = User.objects.get(pk=pk)
     if request.method == 'POST':

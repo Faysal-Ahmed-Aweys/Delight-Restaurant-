@@ -32,12 +32,13 @@ def reserve(request):
             # Set a success message
             messages.success(request, 'Reservation successfully made!')
 
-            return redirect('home')
+            return redirect('profile')
     else:
         form = ReservationForm()
 
     return render(request, 'reserve.html', {'form': form})
 
+@login_required
 def edit_reservation(request, pk):
     reservation = get_object_or_404(Reservation, pk=pk)
     error_message = None
@@ -71,6 +72,7 @@ def edit_reservation(request, pk):
         'error_message': error_message
     })
 
+@login_required
 def cancel_reservation(request, pk):
     reservation = get_object_or_404(Reservation, id=pk)
     
@@ -82,6 +84,7 @@ def cancel_reservation(request, pk):
     # For GET request, render the confirmation page
     return render(request, 'cancel_reservation_confirmation.html', {'reservation': reservation})
 
+@login_required
 def delete_reservation(request, pk):
     reservation = get_object_or_404(Reservation, id=pk)
     
