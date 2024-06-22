@@ -112,10 +112,8 @@ WSGI_APPLICATION = 'delight.wsgi.application'
 # }
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
-    )
-}
+     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+ }
 
 
 # Password validation
