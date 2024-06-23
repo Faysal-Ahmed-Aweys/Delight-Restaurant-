@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import ReservationForm, EditReservationForm
 from .models import Reservation
 from django.contrib import messages
+from django.db.models import Q
 from datetime import date
 
 @login_required
@@ -101,6 +102,27 @@ def delete_reservation(request, pk):
 def reservations_management(request):
     reservations = Reservation.objects.all()
 
+    search_name = request.GET.get('search_name')
+    search_date = request.GET.get('search_date')
+    search_today = request.GET.get('search_today')
+    search_status = request.GET.get('search_status')
+
+    if search_name:
+        reservations = reservations.filter(Q(user__first_name__icontains=search_name) | Q(user__last_name__icontains=search_name))
+    
+    if search_date:
+        reservations = reservations.filter(date=search_date)
+    
+    if search_today:
+        reservations = reservations.filter(date=date.today())
+    
+    if search_status:
+        reservations = reservations.filter(status=search_status)
+
     return render(request, 'reservations_management.html', {
         'reservations': reservations,
+        'search_name': search_name,
+        'search_date': search_date,
+        'search_today': search_today,
+        'search_status': search_status,
     })
