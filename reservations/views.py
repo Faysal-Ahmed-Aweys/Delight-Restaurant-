@@ -3,12 +3,13 @@ from django.contrib.auth.decorators import login_required
 from .forms import ReservationForm, EditReservationForm
 from .models import Reservation
 from django.contrib import messages
+from datetime import date
 
 @login_required
 def reserve(request):
     if request.user.is_staff:  # Check if the user is staff
         messages.warning(request, 'You are not authorized to view this page.')
-        return redirect('home')  # Redirect to staff dashboard but for now home page
+        return redirect('staff_dashboard')  # Redirect to staff dashboard
 
     if request.method == 'POST':
         form = ReservationForm(request.POST)
@@ -95,3 +96,11 @@ def delete_reservation(request, pk):
     
     # For GET request, render the confirmation page
     return render(request, 'delete_reservation_confirmation.html', {'reservation': reservation})
+
+
+def reservations_management(request):
+    reservations = Reservation.objects.all()
+
+    return render(request, 'reservations_management.html', {
+        'reservations': reservations,
+    })
