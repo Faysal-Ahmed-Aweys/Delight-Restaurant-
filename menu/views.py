@@ -32,9 +32,24 @@ def add_menu_item(request):
         form = MenuItemForm()
     return render(request, 'add_menu_item.html', {'form': form})
 
+
 def manage_menu_items(request):
     menu_items = MenuItem.objects.all()
     return render(request, 'manage_menu_items.html', {'menu_items': menu_items})
+
+
+def edit_menu_item(request, pk):
+    menu_item = get_object_or_404(MenuItem, pk=pk)
+    if request.method == 'POST':
+        form = MenuItemForm(request.POST, request.FILES, instance=menu_item)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Menu item successfully edited')
+            return redirect('manage_menu_items')
+    else:
+        form = MenuItemForm(instance=menu_item)
+    return render(request, 'edit_menu_item.html', {'form': form})
+
 
 def delete_menu_item(request, pk):
     item = get_object_or_404(MenuItem, pk=pk)
@@ -43,3 +58,4 @@ def delete_menu_item(request, pk):
         messages.success(request, 'Menu item successfully deleted')
         return redirect('manage_menu_items')
     return render(request, 'delete_menu_item.html', {'item': item})
+

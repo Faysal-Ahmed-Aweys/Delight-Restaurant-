@@ -1,0 +1,35 @@
+<!-- edit_menu_item.html -->
+
+{% extends "base.html" %}
+{% block title %}Edit Menu Item{% endblock title %}
+
+{% block content %}
+<div class="container mt-4 mb-4">
+    <h1>Edit Menu Item</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_name">Name:</label>
+            {{ form.name }}
+        </div>
+        <div class="form-group">
+            <label for="id_description">Description:</label>
+            {{ form.description }}
+        </div>
+        <div class="form-group">
+            <label for="id_price">Price:</label>
+            {{ form.price }}
+        </div>
+        <div class="form-group">
+            <label for="id_category">Category:</label>
+            {{ form.category }}
+        </div>
+        <div class="form-group">
+            <label for="id_image">Image:</label>
+            {{ form.image }}
+        </div>
+        <a href="{% url 'manage_menu_items' %}" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+</div>
+{% endblock content %}
