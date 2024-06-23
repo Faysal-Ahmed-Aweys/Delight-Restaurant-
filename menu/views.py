@@ -31,3 +31,7 @@ def add_menu_item(request):
     else:
         form = MenuItemForm()
     return render(request, 'add_menu_item.html', {'form': form})
+
+def manage_menu_items(request):
+    menu_items = MenuItem.objects.all()
+    return render(request, 'manage_menu_items.html', {'menu_items': menu_items})
