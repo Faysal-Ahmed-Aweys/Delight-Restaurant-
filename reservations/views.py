@@ -126,3 +126,22 @@ def reservations_management(request):
         'search_today': search_today,
         'search_status': search_status,
     })
+
+def edit_reservation_status(request, reservation_id):
+    reservation = get_object_or_404(Reservation, id=reservation_id)
+    if request.method == 'POST':
+        reservation.status = request.POST.get('status')
+        reservation.save()
+        messages.success(request, 'Reservation updated.')
+        return redirect('Manage_reservations')
+    return render(request, 'edit_reservation_status.html', {'reservation': reservation})
+
+def change_reservation_status(request, reservation_id, status):
+    reservation = get_object_or_404(Reservation, id=reservation_id)
+    if status in ['approved', 'denied', 'pending']:
+        reservation.status = status
+        reservation.save()
+        messages.success(request, f'Reservation {status}.')
+    else:
+        messages.error(request, 'Invalid status.')
+    return redirect('Manage_reservations')

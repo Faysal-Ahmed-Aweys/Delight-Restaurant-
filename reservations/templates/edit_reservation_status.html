@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Reservation{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Edit Reservation</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="status">Status</label>
+            <select id="status" name="status" class="form-control">
+                <option value="pending" {% if reservation.status == 'pending' %}selected{% endif %}>Pending</option>
+                <option value="approved" {% if reservation.status == 'approved' %}selected{% endif %}>Approved</option>
+                <option value="denied" {% if reservation.status == 'denied' %}selected{% endif %}>Denied</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+{% endblock content %}
