@@ -1,0 +1,38 @@
+<!-- staff_dashboard.html -->
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Staff Dashboard{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Staff Dashboard</h1>
+    <hr class="section-divider">
+
+    <!-- Menu Management Section -->
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Menu</h2>
+            <hr class="subsection-divider">
+            <div>
+                <!-- Add Menu Item Link -->
+                <a href="#" class="btn bg-navy mb-3">Add Menu Item</a>
+            </div>
+            <div>
+                <!-- Manage Menu Items Link -->
+                <a href="#" class="btn btn-secondary">Manage Menu Items</a>
+            </div>
+        </div>
+
+        <!-- Reservations Section -->
+        <div class="col-md-6">
+            <h2>Reservations</h2>
+            <hr class="subsection-divider">
+            <div>
+                <!-- View Reservations Link -->
+                <a href="#" class="btn bg-navy mb-3">View Reservations</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

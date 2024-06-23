@@ -32,7 +32,7 @@ load_dotenv()
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-faysalahmed-delightrest-9orh63mjs7r.ws-eu114.gitpod.io' , 'delight-restaurant-3f0223201abb.herokuapp.com']
 
