@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import MenuItem
 from .forms import MenuItemForm
 from itertools import chain
@@ -27,7 +27,7 @@ def add_menu_item(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Menu item successfully added')
-            return redirect('menu') # redirect to menu for now
+            return redirect('manage_menu_items')
     else:
         form = MenuItemForm()
     return render(request, 'add_menu_item.html', {'form': form})
@@ -35,3 +35,11 @@ def add_menu_item(request):
 def manage_menu_items(request):
     menu_items = MenuItem.objects.all()
     return render(request, 'manage_menu_items.html', {'menu_items': menu_items})
+
+def delete_menu_item(request, pk):
+    item = get_object_or_404(MenuItem, pk=pk)
+    if request.method == 'POST':
+        item.delete()
+        messages.success(request, 'Menu item successfully deleted')
+        return redirect('manage_menu_items')
+    return render(request, 'delete_menu_item.html', {'item': item})
