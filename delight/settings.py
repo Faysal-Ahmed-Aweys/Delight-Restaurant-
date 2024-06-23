@@ -32,7 +32,7 @@ load_dotenv()
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['8000-faysalahmed-delightrest-9orh63mjs7r.ws-eu114.gitpod.io' , 'delight-restaurant-3f0223201abb.herokuapp.com']
 
@@ -111,10 +111,28 @@ WSGI_APPLICATION = 'delight.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
- }
+# DATABASES = {
+#      'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+#  }
 
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+if DATABASE_URL:
+    DATABASES = {
+        'default': dj_database_url.parse(DATABASE_URL)
+    }
+else:
+    # Provide a default configuration or raise an error
+    DATABASES = {
+    'default': {
+        'ENGINE': os.environ.get('DB_ENGINE'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
