@@ -1,6 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import MenuItem
+from .forms import MenuItemForm
 from itertools import chain
+from django.contrib import messages
+import cloudinary.uploader
+import cloudinary.api
 
 def menu(request):
     starters = MenuItem.objects.filter(category='starter')
@@ -15,3 +19,15 @@ def menu(request):
         'desserts': desserts,
         'combined_menu': combined_menu,
     })
+
+
+def add_menu_item(request):
+    if request.method == 'POST':
+        form = MenuItemForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Menu item successfully added')
+            return redirect('menu') # redirect to menu for now
+    else:
+        form = MenuItemForm()
+    return render(request, 'add_menu_item.html', {'form': form})

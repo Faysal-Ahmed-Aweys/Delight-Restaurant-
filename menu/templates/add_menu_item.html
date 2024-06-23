@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <h2>Add Menu Item</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-secondary" type="button" onclick="window.history.back();">Cancel</button>
+        <button type="submit" class="btn bg-navy">Add Item</button>
+    </form>
+</div>
+{% endblock %}
