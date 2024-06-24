@@ -4,13 +4,19 @@ from .forms import ReservationForm, EditReservationForm
 from .models import Reservation
 from django.contrib import messages
 from django.db.models import Q
+from django.conf import settings
 from datetime import date
+from django.core.mail import send_mail
+from django.utils.html import strip_tags
+from django.template.loader import render_to_string
+from django.http import HttpResponse
+import logging
 
 @login_required
 def reserve(request):
-    if request.user.is_staff:  # Check if the user is staff
+    if request.user.is_staff:
         messages.warning(request, 'You are not authorized to view this page.')
-        return redirect('staff_dashboard')  # Redirect to staff dashboard
+        return redirect('staff_dashboard')
 
     if request.method == 'POST':
         form = ReservationForm(request.POST)
@@ -20,7 +26,6 @@ def reserve(request):
             num_people = form.cleaned_data['num_people']
             user = request.user
 
-            # Check if the reservation already exists
             if Reservation.objects.filter(date=reservation_date, time=reservation_time).exists():
                 return render(request, 'reserve.html', {
                     'form': form,
@@ -31,8 +36,33 @@ def reserve(request):
             reservation.user = user
             reservation.save()
 
-            # Set a success message
-            messages.success(request, 'Reservation successfully made!')
+            # Prepare email
+            subject = 'Reservation Confirmation'
+            context = {'reservation': reservation}
+            email_template = render_to_string('reservation_confirmation_email.html', context)
+            from_email = settings.EMAIL_HOST_USER
+            to_email = user.email
+
+            # Debugging Information
+            print("Email Subject:", subject)
+            print("Email Message:", email_template)
+            print("From Email:", from_email)
+            print("To Email:", to_email)
+
+            try:
+                # Send email
+                send_mail(
+                    subject,
+                    email_template,
+                    from_email,
+                    [to_email],
+                    fail_silently=False
+                )
+                print("Email sent successfully")
+            except Exception as e:
+                logging.error(f"Error sending email: {e}")
+
+            messages.success(request, 'Reservation successfully made! A confirmation email has been sent.')
 
             return redirect('profile')
     else:
