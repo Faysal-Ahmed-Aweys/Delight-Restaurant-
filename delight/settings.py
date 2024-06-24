@@ -10,32 +10,30 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 from dotenv import load_dotenv
-import os
 import dj_database_url
 
 import cloudinary
-import cloudinary.uploader
 from cloudinary.utils import cloudinary_url
+import cloudinary.uploader
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-load_dotenv()
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
-ALLOWED_HOSTS = ['8000-faysalahmed-delightrest-9orh63mjs7r.ws-eu114.gitpod.io' , 'delight-restaurant-3f0223201abb.herokuapp.com']
-
+ALLOWED_HOSTS = [
+    '8000-faysalahmed-delightrest-9orh63mjs7r.ws-eu114.gitpod.io',
+    'delight-restaurant-3f0223201abb.herokuapp.com',
+]
 CSRF_TRUSTED_ORIGINS = ['https://8000-faysalahmed-delightrest-9orh63mjs7r.ws-eu114.gitpod.io']
 
 # Application definition
@@ -81,10 +79,8 @@ ROOT_URLCONF = 'delight.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates',
-                 ],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
-        
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -98,20 +94,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'delight.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-# DATABASES = {
-#      'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-#  }
 
 DATABASE_URL = os.environ.get('DATABASE_URL')
 
@@ -120,15 +104,14 @@ if DATABASE_URL:
         'default': dj_database_url.parse(DATABASE_URL)
     }
 else:
-    # Provide a default configuration or raise an error
     DATABASES = {
-    'default': {
-        'ENGINE': os.environ.get('DB_ENGINE'),
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
+        'default': {
+            'ENGINE': os.environ.get('DB_ENGINE'),
+            'NAME': os.environ.get('DB_NAME'),
+            'USER': os.environ.get('DB_USER'),
+            'PASSWORD': os.environ.get('DB_PASSWORD'),
+            'HOST': os.environ.get('DB_HOST'),
+            'PORT': os.environ.get('DB_PORT'),
         }
     }
 
@@ -150,22 +133,20 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
+USE_L10N = True
 USE_TZ = True
 
+# Cloudinary configuration
 cloudinary.config( 
-    cloud_name = os.environ.get('cloudinary_cloud_name'), 
-    api_key = os.environ.get('cloudinary_api_key'), 
-    api_secret = os.environ.get('cloudinary_api_secret'),
+    cloud_name=os.environ.get('cloudinary_cloud_name'), 
+    api_key=os.environ.get('cloudinary_api_key'), 
+    api_secret=os.environ.get('cloudinary_api_secret'),
     secure=True
 )
 
@@ -176,13 +157,15 @@ STATIC_URL = '/static/'
 
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Authentication settings
 AUTHENTICATION_BACKENDS = [
-    "django.contrib.auth.backends.ModelBackend",
+    'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
@@ -202,6 +185,7 @@ ACCOUNT_FORMS = {
     'login': 'accounts.forms.CustomLoginForm',
 }
 
+# Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' if DEBUG else 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
