@@ -1,11 +1,9 @@
-from django.test import TestCase, Client, RequestFactory
+from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.urls import reverse
-from django.contrib.sessions.middleware import SessionMiddleware
-from django.http import HttpRequest
 from reservations.models import Reservation
 from datetime import datetime, timedelta
-from .forms import CustomSignupForm, CustomLoginForm, UpdateUserForm
+from .forms import UpdateUserForm
 
 
 class UpdateUserFormTest(TestCase):
