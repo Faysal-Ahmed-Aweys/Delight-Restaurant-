@@ -162,6 +162,12 @@ USE_I18N = True
 
 USE_TZ = True
 
+cloudinary.config( 
+    cloud_name = os.environ.get('cloudinary_cloud_name'), 
+    api_key = os.environ.get('cloudinary_api_key'), 
+    api_secret = os.environ.get('cloudinary_api_secret'),
+    secure=True
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -169,6 +175,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -189,15 +196,6 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'account_login'
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
-
-cloudinary.config( 
-    cloud_name = os.environ.get('cloudinary_cloud_name'), 
-    api_key = os.environ.get('cloudinary_api_key'), 
-    api_secret = os.environ.get('cloudinary_api_secret'),
-    secure=True
-)
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 ACCOUNT_FORMS = {
     'signup': 'accounts.forms.CustomSignupForm',
