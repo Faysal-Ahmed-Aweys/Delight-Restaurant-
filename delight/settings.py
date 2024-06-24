@@ -168,6 +168,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -192,7 +193,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 cloudinary.config( 
     cloud_name = os.environ.get('cloudinary_cloud_name'), 
     api_key = os.environ.get('cloudinary_api_key'), 
-    api_secret = os.environ.get('cloudinary_api_secret'), # Click 'View Credentials' below to copy your API secret
+    api_secret = os.environ.get('cloudinary_api_secret'),
     secure=True
 )
 

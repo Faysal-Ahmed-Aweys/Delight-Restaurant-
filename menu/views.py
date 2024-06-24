@@ -5,6 +5,7 @@ from itertools import chain
 from django.contrib import messages
 import cloudinary.uploader
 import cloudinary.api
+from cloudinary import CloudinaryImage
 
 def menu(request):
     starters = MenuItem.objects.filter(category='starter')
