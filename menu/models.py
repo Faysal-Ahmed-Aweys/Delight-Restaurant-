@@ -1,5 +1,6 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
+import cloudinary
 
 class MenuItem(models.Model):
     CATEGORY_CHOICES = [
