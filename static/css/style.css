@@ -1,0 +1,152 @@
+/* general styles */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bg-navy {
+    background-color: navy;
+    color: whitesmoke;
+}
+
+.bg-navy:hover {
+    background-color: whitesmoke;
+    color: navy;
+}
+
+/* header */
+header {
+    width: 100%;
+    position: fixed;
+    z-index: 99;
+    margin-bottom: auto;
+    top: 0;
+}
+
+.navbar-brand {
+    font-family: "Great Vibes", cursive;
+    font-weight: 400;
+    font-size: 50px;
+    margin-right: 100px;
+}
+.navbar {
+    background-color: #B2AC88; 
+}
+
+.nav-item {
+    font-size: 20px;
+}
+
+/* home page  */
+
+/* hero section */
+.hero-section {
+    background: url("https://res.cloudinary.com/dxfvduhuz/image/upload/v1719251718/hero-image_qebbvj.jpg") no-repeat center center/cover;
+    background-attachment: fixed;
+    color: #333;
+    padding: 140px 0;
+    margin-top: -40px;
+    width: 100%;
+    min-height: 75vh;
+}
+
+.great-vibes {
+    font-family: "Great Vibes", cursive;
+    font-weight: 400;
+    font-size: 100px;
+    width: 100%;
+    color: rgb(0, 0, 0);
+    background-color: rgba(194, 178, 128, 0.5);
+    margin-bottom: 60px;
+}
+
+.hero-advert {
+    color: rgb(0, 0, 0);
+    background-color: rgba(194, 178, 128, 0.5);
+    font-size: 30px;
+}
+
+/* about us and menu section */
+.combined-section .menu-highlight {
+    background-color: #f8f9fa;
+}
+
+.about-us-and-menu-heading {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+
+.bg-beige {
+    background-color: beige;
+}
+
+.bg-orange {
+    background-color: orange;
+}
+
+/* testimonials section */
+.testimonial-heading {
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+/* footer */
+.footer {
+    margin-top: auto;
+    width: 100%;
+    padding-top: 20px;
+    background-color: #B2AC88; 
+    color: white; 
+    text-align: center;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 767.98px) {
+    .text-md-left {
+        text-align: center !important;
+    }
+    .footer-heading {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+/* menu page */
+.text-large {
+    font-size: 30px;
+}
+
+.text-gold {
+    color: #d4af37;
+    font-family: "Great Vibes", cursive;
+    font-weight: 400;
+}
+
+.menu-category-heading {
+    font-size: 40px;
+}
