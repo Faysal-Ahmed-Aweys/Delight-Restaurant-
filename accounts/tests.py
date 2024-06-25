@@ -7,11 +7,20 @@ from .forms import UpdateUserForm
 
 
 class UpdateUserFormTest(TestCase):
+    """
+    Test cases for the UpdateUserForm form.
+    """
 
     def setUp(self):
+        """
+        Setup method that creates a test user.
+        """
         self.user = User.objects.create_user(username='testuser', email='test@example.com', password='password123')
 
     def test_update_user_form(self):
+        """
+        Test case to verify updating user details with valid data.
+        """
         form_data = {
             'username': 'updateduser',
             'email': 'updated@example.com',
@@ -27,6 +36,9 @@ class UpdateUserFormTest(TestCase):
         self.assertEqual(updated_user.last_name, 'User')
 
     def test_update_user_form_existing_username(self):
+        """
+        Test case to verify handling of existing username during update.
+        """
         User.objects.create_user(username='existinguser', email='existing@example.com', password='password123')
         form_data = {
             'username': 'existinguser',
@@ -39,6 +51,9 @@ class UpdateUserFormTest(TestCase):
         self.assertEqual(form.errors['username'], ['This username is already taken. Please choose a different one.'])
 
     def test_update_user_form_existing_email(self):
+        """
+        Test case to verify handling of existing email during update.
+        """
         User.objects.create_user(username='otheruser', email='existing@example.com', password='password123')
         form_data = {
             'username': 'updateduser',
@@ -52,8 +67,14 @@ class UpdateUserFormTest(TestCase):
 
 
 class ProfileViewTest(TestCase):
+    """
+    Test cases for profile-related views.
+    """
 
     def setUp(self):
+        """
+        Setup method that creates a test user and reservations for testing profile views.
+        """
         self.client = Client()
         self.user = User.objects.create_user(username='testuser', password='password123', email='test@example.com')
         self.client.login(username='testuser', password='password123')
@@ -75,6 +96,9 @@ class ProfileViewTest(TestCase):
         )
 
     def test_profile_view(self):
+        """
+        Test case to verify profile view functionality.
+        """
         response = self.client.get(reverse('profile'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'profile.html')
@@ -82,6 +106,9 @@ class ProfileViewTest(TestCase):
         self.assertContains(response, 'Expired Reservations')
 
     def test_edit_profile_view(self):
+        """
+        Test case to verify edit profile view functionality.
+        """
         response = self.client.get(reverse('edit_profile', kwargs={'pk': self.user.pk}))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'edit_details.html')
@@ -101,11 +128,17 @@ class ProfileViewTest(TestCase):
         self.assertEqual(self.user.last_name, 'User')
 
     def test_delete_account_confirmation_view(self):
+        """
+        Test case to verify delete account confirmation view functionality.
+        """
         response = self.client.get(reverse('delete_account_confirmation', kwargs={'pk': self.user.pk}))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'delete_account_confirmation.html')
 
     def test_delete_account_view(self):
+        """
+        Test case to verify delete account view functionality.
+        """
         response = self.client.post(reverse('delete_account', kwargs={'pk': self.user.pk}), {'action': 'confirm'})
         self.assertRedirects(response, reverse('home'))
         self.assertFalse(User.objects.filter(pk=self.user.pk).exists())
