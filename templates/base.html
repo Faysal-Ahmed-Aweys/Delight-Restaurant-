@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,60 +10,64 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Font awesome CSS link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Google font Great Vibes -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <!-- Custom css link -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
-
+    <header>
     <!-- Navigation bar and links -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{% url 'home' %}">Delight</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto">
-                {% if user.is_staff is False %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'home' %}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'reserve' %}">Book Now</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'menu' %}">Menu</a>
-                </li>
-                {% endif %}
-                {% if user.is_authenticated %}
-                {% if user.is_staff %}
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand" href="{% url 'home' %}">Delight</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    {% if user.is_staff is False %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reserve' %}">Book Now</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'menu' %}">Menu</a>
+                    </li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'staff_dashboard' %}">Dashboard</a>
+                            </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'staff_dashboard' %}">Dashboard</a>
+                            <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                         </li>
-                        {% else %}
+                    {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                            <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
                         </li>
                     {% endif %}
-                {% endif %}
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
-                    </li>
-                {% endif %}
-            </ul>
-        </div>
-    </nav>
-
+                </ul>
+            </div>
+        </nav>
+    </header>
     <!-- Messages section -->
     {% block messages %}
-    <div class="content">
+    <div class="messages">
         {% if messages %}
             <div>
                 {% for message in messages %}
@@ -78,12 +84,12 @@
     {% endblock messages %}
 
     <!-- Main content section -->
-    <div class="content">
+    <div class="main-content">
         {% block content %}{% endblock content %}
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white mt-auto">
+    <footer class="footer text-white mt-auto">
         <div class="container py-4">
             <div class="row text-center text-md-left">
                 <div class="col-md-4 mb-4 mb-md-0">
