@@ -148,9 +148,9 @@ USE_TZ = True
 
 # Cloudinary configuration
 cloudinary.config( 
-    cloud_name=os.environ.get('cloudinary_cloud_name'), 
-    api_key=os.environ.get('cloudinary_api_key'), 
-    api_secret=os.environ.get('cloudinary_api_secret'),
+    cloud_name=os.getenv('cloudinary_cloud_name'), 
+    api_key=os.getenv('cloudinary_api_key'), 
+    api_secret=os.getenv('cloudinary_api_secret'),
     secure=True
 )
 
