@@ -16,9 +16,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 import dj_database_url
 
-import cloudinary
-from cloudinary.utils import cloudinary_url
-import cloudinary.uploader
 
 # Load environment variables from .env file
 load_dotenv()
@@ -146,14 +143,6 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# Cloudinary configuration
-cloudinary.config( 
-    cloud_name=os.getenv('cloudinary_cloud_name'), 
-    api_key=os.getenv('cloudinary_api_key'), 
-    api_secret=os.getenv('cloudinary_api_secret'),
-    secure=True
-)
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
@@ -166,6 +155,8 @@ STATICFILES_DIRS = [
 ]
 
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+
+MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
