@@ -8,6 +8,9 @@ import cloudinary.api
 from cloudinary import CloudinaryImage
 
 def menu(request):
+    """
+    Display the menu with all categories: starters, mains, and desserts.
+    """
     starters = MenuItem.objects.filter(category='starter')
     mains = MenuItem.objects.filter(category='main')
     desserts = MenuItem.objects.filter(category='dessert')
@@ -23,6 +26,9 @@ def menu(request):
 
 
 def add_menu_item(request):
+    """
+    Handle the addition of a new menu item.
+    """
     if request.method == 'POST':
         form = MenuItemForm(request.POST, request.FILES)
         if form.is_valid():
@@ -35,11 +41,17 @@ def add_menu_item(request):
 
 
 def manage_menu_items(request):
+    """
+    Display all menu items for management.
+    """
     menu_items = MenuItem.objects.all()
     return render(request, 'manage_menu_items.html', {'menu_items': menu_items})
 
 
 def edit_menu_item(request, pk):
+    """
+    Handle the editing of an existing menu item.
+    """
     menu_item = get_object_or_404(MenuItem, pk=pk)
     if request.method == 'POST':
         form = MenuItemForm(request.POST, request.FILES, instance=menu_item)
@@ -53,10 +65,12 @@ def edit_menu_item(request, pk):
 
 
 def delete_menu_item(request, pk):
+    """
+    Handle the deletion of a menu item.
+    """
     item = get_object_or_404(MenuItem, pk=pk)
     if request.method == 'POST':
         item.delete()
         messages.success(request, 'Menu item successfully deleted')
         return redirect('manage_menu_items')
     return render(request, 'delete_menu_item.html', {'item': item})
-
