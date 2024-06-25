@@ -6,17 +6,17 @@
 <div class="container my-5">
     <div class="text-center">
         <h1 class="bg-dark text-gold display-2 menu-title">Menu</h1>
-        <p class="display-5 lead big">Discover our delicious selection of dishes carefully crafted to tantalize your taste buds.</p>
+        <p class="display-5 lead text-large">Discover our delicious selection of dishes carefully crafted to tantalize your taste buds.</p>
         <p class="text-muted font-italic">Click on a menu item name to view full details and an image of the dish.</p>
     </div>
 
     <!-- Starters Section -->
     <div class="menu-section">
-        <h2 class="bg-dark text-gold text-center font-size">Starters</h2>
+        <h2 class="bg-dark text-gold text-center menu-category-heading">Starters</h2>
         <div class="list-group">
             {% for starter in starters %}
                 <div class="list-group-item-action" data-toggle="modal" data-target="#starterModal{{ starter.id }}">
-                    <h5 class="mb-4 d-inline-block" style="cursor: pointer;" onmouseover="this.style.textDecoration='underline'; this.style.color='red';" onmouseout="this.style.textDecoration='none'; this.style.color='';">
+                    <h5 class="mb-4 d-inline-block" style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none'; this.style.color='';">
                         {{ starter.name }}
                     </h5>
                     <span class="float-right">${{ starter.price }}</span>
@@ -27,11 +27,11 @@
 
     <!-- Mains Section -->
     <div class="menu-section">
-        <h2 class="bg-dark text-gold text-center font-size">Mains</h2>
+        <h2 class="bg-dark text-gold text-center menu-category-heading">Mains</h2>
         <div class="list-group">
             {% for main in mains %}
                 <div class="list-group-item-action" data-toggle="modal" data-target="#mainModal{{ main.id }}">
-                    <h5 class="mb-4 d-inline-block" style="cursor: pointer;" onmouseover="this.style.textDecoration='underline'; this.style.color='red';" onmouseout="this.style.textDecoration='none'; this.style.color='';">
+                    <h5 class="mb-4 d-inline-block" style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none'; this.style.color='';">
                         {{ main.name }}
                     </h5>
                     <span class="float-right">${{ main.price }}</span>
@@ -42,11 +42,11 @@
 
     <!-- Desserts Section -->
     <div class="menu-section">
-        <h2 class="bg-dark text-gold text-center font-size">Desserts</h2>
+        <h2 class="bg-dark text-gold text-center menu-category-heading">Desserts</h2>
         <div class="list-group">
             {% for dessert in desserts %}
                 <div class="list-group-item-action" data-toggle="modal" data-target="#dessertModal{{ dessert.id }}">
-                    <h5 class="mb-4 d-inline-block" style="cursor: pointer;" onmouseover="this.style.textDecoration='underline'; this.style.color='red';" onmouseout="this.style.textDecoration='none'; this.style.color='';">
+                    <h5 class="mb-4 d-inline-block" style="cursor: pointer;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none'; this.style.color='';">
                         {{ dessert.name }}
                     </h5>
                     <span class="float-right">${{ dessert.price }}</span>
@@ -58,21 +58,27 @@
 
 <!-- Modals -->
 {% for item in combined_menu %}
-    <div class="modal fade" id="{{ item.category }}Modal{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="{{ item.category }}Modal{{ item.id }}Label" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="{{ item.category }}Modal{{ item.id }}Label">{{ item.name }}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="{{ item.image.url }}" class="modal-image" alt="{{ item.name }} Image">
-                    <p>{{ item.description }}</p>
+<div class="modal fade" id="{{ item.category }}Modal{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="{{ item.category }}Modal{{ item.id }}Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="{{ item.category }}Modal{{ item.id }}Label">{{ item.name }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="{{ item.image.url }}" class="img-fluid mx-auto d-block" alt="{{ item.name }} Image">
+            </div>
+            <div class="modal-footer">
+                <div class="w-100 text-left">
+                    <p class="m-0">{{ item.description }}</p>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+
 {% endfor %}
 {% endblock content %}
