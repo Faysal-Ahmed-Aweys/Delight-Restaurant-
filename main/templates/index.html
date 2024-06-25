@@ -1,3 +1,65 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}Home{% endblock title %}
+
+{% block content %}
+<!-- Hero section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="hero-content text-center">
+            <h1 class="display-1"><span class="fancy">Delight Restaurant</span></h1><br><br><br>
+            <p class="hero-tagline"><span class="hero-line">Whether you're craving classic comfort food or daring to explore new tastes, our menu offers a symphony of delights to satisfy every palate.</span></p>
+            <a href="{% url 'reserve' %}" class="btn text-center bg-navy">Book Now</a>
+        </div>
+    </div>
+</section>
+
+<!-- about us and Menu section -->
+<section class="combined-section py-5 bg-beige">
+    <div class="container">
+        <h2 class="heading text-center mb-4">About Us & Our Menu</h2>
+        <div class="row">
+            <div class="col-lg-12">
+                <p class="text-center">Welcome to Delight Restaurant, where culinary artistry meets an unforgettable dining experience. Nestled in the heart of the city, our restaurant offers an elegant ambiance perfect for any occasion. From the moment you step through our doors, you'll be greeted with warm hospitality and a commitment to excellence.</p>
+                <p class="text-center">At Delight Restaurant, we pride ourselves on using the finest ingredients sourced from local farms and international markets. Our talented chefs craft each dish with precision and passion, ensuring a symphony of flavors in every bite.</p>
+                <div class="menu-highlight text-center bg-light p-3 my-4 rounded">
+                    <h3 class="menu-heading">Our Menu</h3>
+                    <p class="menu-content">Our menu offers a diverse array of gourmet dishes that cater to all palates, including fresh seafood, tender steaks, and exquisite vegetarian options. Each dish is designed to provide a memorable culinary experience.</p>
+                    <a href="{% url 'menu' %}" class="btn bg-orange mt-2">View Full Menu</a>
+                </div>
+
+                <p class="text-center">Our wine cellar boasts an extensive collection of world-class wines, carefully curated to complement our menu. Our sommeliers are always on hand to guide you through our selections and help you find the perfect pairing for your meal.</p>
+
+                <p class="text-center">We believe that dining is not just about the food, but also about the experience. Our elegantly designed dining rooms, attentive service, and attention to detail create an atmosphere of luxury and comfort. Come and experience the magic of Delight Restaurant, where every meal is a celebration of fine dining.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials section -->
+<section class="testimonial-section py-5">
+    <div class="container">
+        <h2 class="testimonial-heading text-center mb-4">What Our Customers Say</h2>
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="testimonial-item p-3 border rounded bg-orange text-white">
+                    <p class="testimonial-content">"The food was absolutely divine! I can't wait to come back again."</p>
+                    <p class="testimonial-author">- Jane Doe</p>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="testimonial-item p-3 border rounded bg-orange text-white">
+                    <p class="testimonial-content">"Great ambiance and exceptional service. Highly recommended!"</p>
+                    <p class="testimonial-author">- John Smith</p>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="testimonial-item p-3 border rounded bg-orange text-white">
+                    <p class="testimonial-content">"A culinary delight! Every bite was a taste of perfection."</p>
+                    <p class="testimonial-author">- Emily Johnson</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

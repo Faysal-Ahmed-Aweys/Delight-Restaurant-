@@ -103,10 +103,10 @@ class MenuViewsTest(TestCase):
             'category': 'dessert',
         }
         response = self.client.post(reverse('edit_menu_item', args=[self.menu_item.id]), data=form_data)
-        self.assertEqual(response.status_code, 302)  # Redirects to manage_menu_items view upon success
+        self.assertEqual(response.status_code, 302)
 
     def test_delete_menu_item(self):
         response = self.client.post(reverse('delete_menu_item', args=[self.menu_item.id]))
-        self.assertEqual(response.status_code, 302)  # Redirects to manage_menu_items view upon success
+        self.assertEqual(response.status_code, 302)
         self.assertFalse(MenuItem.objects.filter(id=self.menu_item.id).exists())
 
