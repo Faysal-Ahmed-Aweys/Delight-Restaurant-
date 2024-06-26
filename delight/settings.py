@@ -30,11 +30,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = False
 ALLOWED_HOSTS = [
-    '8000-faysalahmed-delightrest-9orh63mjs7r.ws-eu114.gitpod.io',
     'delight-restaurant-3f0223201abb.herokuapp.com',
-    '*'
 ]
-CSRF_TRUSTED_ORIGINS = ['https://8000-faysalahmed-delightrest-9orh63mjs7r.ws-eu114.gitpod.io']
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-faysalahmed-delightrest-9orh63mjs7r.ws-eu114.gitpod.io'
+    ]
 
 # Application definition
 
@@ -156,7 +156,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+STATICFILES_STORAGE = [
+    'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+    ]
 
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
@@ -187,11 +189,3 @@ ACCOUNT_FORMS = {
     'signup': 'accounts.forms.CustomSignupForm',
     'login': 'accounts.forms.CustomLoginForm',
 }
-
-# Email settings
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' if DEBUG else 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
