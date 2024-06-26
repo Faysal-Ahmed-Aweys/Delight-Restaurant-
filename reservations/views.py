@@ -237,9 +237,11 @@ def edit_reservation_status(request, reservation_id):
     if request.method == 'POST':
         reservation.status = request.POST.get('status')
         reservation.save()
-        messages.success(request, 'Reservation updated.')
+        messages.success(request, 'Reservation status updated.')
         return redirect('Manage_reservations')
     return render(request, 'edit_reservation_status.html', {'reservation': reservation})
+
+
 
 def change_reservation_status(request, reservation_id, status):
     """
