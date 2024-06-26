@@ -1,37 +1,40 @@
 {% extends "base.html" %}
 
-
 {% block title %}Staff Dashboard{% endblock title %}
 
 {% block content %}
 <div class="container mt-5">
-    <h1>Staff Dashboard</h1>
+    <h2>Staff Dashboard</h2>
     <hr class="section-divider">
 
     <!-- Menu Management Section -->
-    <div class="row">
-        <div class="col-md-6">
-            <h2>Menu</h2>
-            <hr class="subsection-divider">
-            <div>
-                <!-- Add Menu Item Link -->
-                <a href="{% url 'add_menu_item' %}" class="btn bg-navy mb-3">Add Menu Item</a>
+    <section aria-labelledby="menu-management">
+        <div class="row">
+            <div class="col-md-6">
+                <h3 id="menu-management">Menu Management</h3>
+                <hr class="subsection-divider">
+                <div>
+                    <!-- Add Menu Item Link -->
+                    <a href="{% url 'add_menu_item' %}" class="btn bg-navy mb-3">Add Menu Item</a>
+                </div>
+                <div>
+                    <!-- Manage Menu Items Link -->
+                    <a href="{% url 'manage_menu_items' %}" class="btn btn-secondary">Manage Menu Items</a>
+                </div>
             </div>
-            <div>
-                <!-- Manage Menu Items Link -->
-                <a href="{% url 'manage_menu_items' %}" class="btn btn-secondary">Manage Menu Items</a>
-            </div>
-        </div>
 
-        <!-- Reservations Section -->
-        <div class="col-md-6">
-            <h2>Reservations</h2>
-            <hr class="subsection-divider">
-            <div>
-                <!-- View Reservations Link -->
-                <a href="{% url 'Manage_reservations' %}" class="btn bg-navy mb-3">View Reservations</a>
+            <!-- Reservations Section -->
+            <div class="col-md-6">
+                <section aria-labelledby="reservations-management">
+                    <h3 id="reservations-management">Reservations Management</h3>
+                    <hr class="subsection-divider">
+                    <div>
+                        <!-- View Reservations Link -->
+                        <a href="{% url 'Manage_reservations' %}" class="btn bg-navy mb-3">View Reservations</a>
+                    </div>
+                </section>
             </div>
         </div>
-    </div>
+    </section>
 </div>
 {% endblock content %}
