@@ -61,13 +61,34 @@ The final site pages are a bit different from the original wireframes.. I knew h
 
 * ##### Header
 
+![Navigation bar](assets/docs/screenshots/navbar_large_screens.png)
+![Navigation bar small screens](assets/docs/screenshots/closed_small_screen_nav_bar.png)
+![Navigation bar](assets/docs/screenshots/expanded_small_screen_nav_bar.png)
+
 * ##### The Footer
 
+![footer](assets/docs/screenshots/footer.png)
+
 #### Home Page
+* ##### Hero Section
+
+![Hero section](assets/docs/screenshots/hero_section.png)
+
+* ##### About us and Menu Section
+
+![About us and Menu section](assets/docs/screenshots/about_menu_section.png)
+
+* ##### Testimonials Section
+
+![Testimonials section](assets/docs/screenshots/testimonials_section.png)
 
 #### Menu Page
 
+![Menu Page](assets/docs/screenshots/menu_page.png)
+
 * ##### Menu Item Modal
+
+![Menu Item Modal](assets/docs/screenshots/menuitem_modal.png)
 
 #### User Permissions
 
@@ -75,15 +96,23 @@ The final site pages are a bit different from the original wireframes.. I knew h
 
 * ##### Signup Page
 
+![Signup Page](assets/docs/screenshots/signup_page.png)
+
 #### User login and logout
 
 * ##### Login Page
-  
+
+![login Page](assets/docs/screenshots/signin_page.png)
+
 * ##### Logout Page
+
+![logout Page](assets/docs/screenshots/logout_page.png)
 
 #### Registered User Change Password
 
 * ##### Change Password page
+
+![Change Password Page](assets/docs/screenshots/change_password_page.png)
 
 #### Booking Page
 
@@ -91,42 +120,84 @@ The final site pages are a bit different from the original wireframes.. I knew h
 
 * ##### Edit Reservation Page
 
+![Edit reservation Page](assets/docs/screenshots/edit_reservation_confirmation_page.png)
+
 #### Canceling Reservations
 
 * ##### Cancel Reservation Page
 
+![Cancel Reservation Page](assets/docs/screenshots/cancel_reservation_confirmation_page.png)
+
 #### Deleting Expired Reservations
 
-* ##### Cancel Reservation Page
+* ##### Delete Reservation Page
+
+![Delete Reservation Page](assets/docs/screenshots/delete_reservation_confirmation_page.png)
 
 #### Profile Page
 
 * ##### User Account Section.
 
+![User Account Section](assets/docs/screenshots/user_account_section.png)
+
 * ##### Reservations Section.
 
   * ###### Upcoming Reservations.
+ 
+![Upcoming reservations section](assets/docs/screenshots/upcoming_reservations_section.png)
+
   * ###### Expired Reservations.
+
+![Expired Reservations Section](assets/docs/screenshots/expired_reservations_section.png)
 
 #### Editing User Account
 
 * ##### Edit Account Page
 
+![Edit Account Page](assets/docs/screenshots/edit_details_page.png)
+
 #### Deleting User Account
 
 * ##### Delete Account Confirmation Page
 
+![Delete Account Confirmation Page](assets/docs/screenshots/delete_account_confirmation_page.png)
+
 #### Staff Dashboard Page
+
+![Staff Dashboard](assets/docs/screenshots/staff_dashboard_page.png)
 
 #### Add Menu item Page
 
+![Add Menu Item](assets/docs/screenshots/staff_add_menu_item_page.png)
+
 #### Menu Management Page
+
+![Menu Management Page](assets/docs/screenshots/staff_menu_management_page.png)
 
 #### Reservations Management Page
 
+![Reservation Management](assets/docs/screenshots/staff_reservations_management_page.png)
+
 #### Success messages
 
-#### warning messages
+![signed in](assets/docs/screenshots/signed_in_success_message.png)
+![signed out](assets/docs/screenshots/signed_out_success_message.png)
+![Reservation updated](assets/docs/screenshots/reservation_updated_success_message.png)
+![Reservation status updated](assets/docs/screenshots/reservation_status_updated_success_message.png)
+![Reservation made](assets/docs/screenshots/reservation_made_success_message.png)
+![Reservation denied](assets/docs/screenshots/reservation_denied_success_message.png)
+![Reservation deleted](assets/docs/screenshots/reservation_deleted_success_message.png)
+![Reservation cancelled](assets/docs/screenshots/reservation_cancelled_success_message.png)
+![Reservation approved](assets/docs/screenshots/reservation_approved_success_message.png)
+![password changed](assets/docs/screenshots/password_changed_success_message.png)
+![Menuitem edited](assets/docs/screenshots/menuitem_edited_success_message.png)
+![Menuitem deleted](assets/docs/screenshots/menuitem_deleted_success_message.png)
+![Menuitem added](assets/docs/screenshots/menuitem_added_success_message.png)
+![user details updated](assets/docs/screenshots/user_details_updated_success_message.png)
+![User Account deleted](assets/docs/screenshots/account_deleted_success_message.png)
+
+
+#### warning message
 
 ### Future Features and enhancements
 
