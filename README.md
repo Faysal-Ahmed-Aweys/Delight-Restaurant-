@@ -48,10 +48,16 @@ The final site pages are a bit different from the original wireframes.. I knew h
 ### Site Design
 
 #### Colour Scheme
+I used [Constras-grid](https://contrast-grid.eightshapes.com/) to choose colors that contrast well with each other and do not cause any contrast issues to the user whatsoever. The colors was suggested to me by my sister Maryan Aweys. They are the perfect colors for this site as they give the website cool, fancy and professional look and do not cause any contrast errors. 
+
+
 
 #### Typography
+As i was going for a professional fancy looking restaurant, i used the google font great vibes on the restaurant logo and name on hero section of the site which has given it a fancy look and alongside on the rest of the site, i used sans serif font which is neat and easy to read.
 
 ### Project Management
+Throughout this project, I employed agile methodology by utilizing GitHub projects and issues. I could create epics and user stories using issues, labeling, and categorizing them. These issues were then added to the project kanban board, allowing me to efficiently manage the development process. This approach was extremely beneficial for breaking down the development process into distinct sections and stages, enhancing overall development efficiency and quality. agile principles helped me track my progress in every aspect and ensured that the site could be easily maintained in the future.
+
 
 ## Features
 
@@ -115,6 +121,8 @@ The final site pages are a bit different from the original wireframes.. I knew h
 ![Change Password Page](assets/docs/screenshots/change_password_page.png)
 
 #### Booking Page
+
+![Change Password Page](assets/docs/screenshots/reservation_page.png)
 
 #### Editing Reservations
 
@@ -189,8 +197,8 @@ The final site pages are a bit different from the original wireframes.. I knew h
 ![Reservation deleted](assets/docs/screenshots/reservation_deleted_success_message.png)
 ![Reservation cancelled](assets/docs/screenshots/reservation_cancelled_success_message.png)
 ![Reservation approved](assets/docs/screenshots/reservation_approved_success_message.png)
-![password changed](assets/docs/screenshots/password_changed_success_message.png)
-![Menuitem edited](assets/docs/screenshots/menuitem_edited_success_message.png)
+![password changed](assets/docs/screenshots/password_changed_succcess_message.png)
+![Menuitem edited](assets/docs/screenshots/menuitem_edited_sucess_message.png)
 ![Menuitem deleted](assets/docs/screenshots/menuitem_deleted_success_message.png)
 ![Menuitem added](assets/docs/screenshots/menuitem_added_success_message.png)
 ![user details updated](assets/docs/screenshots/user_details_updated_success_message.png)
