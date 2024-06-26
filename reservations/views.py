@@ -14,6 +14,20 @@ import logging
 
 @login_required
 def reserve(request):
+    """
+    Handles the reservation creation process for logged-in users. Staff members are redirected away from this view.
+
+    If the request method is POST, attempts to create a new reservation. If successful, sends a confirmation email
+    and displays a success message. If the reservation slot is already booked, displays an error message.
+
+    If the request method is GET, displays the reservation form.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The rendered reservation form or a redirect to the profile page.
+    """
     if request.user.is_staff:
         messages.warning(request, 'You are not authorized to view this page.')
         return redirect('staff_dashboard')
@@ -72,6 +86,21 @@ def reserve(request):
 
 @login_required
 def edit_reservation(request, pk):
+    """
+    Handles the reservation editing process for logged-in users.
+
+    If the request method is POST, attempts to update the reservation. If successful, displays a success message.
+    If the reservation slot is already booked, displays an error message.
+
+    If the request method is GET, displays the reservation editing form.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        pk (int): The primary key of the reservation to be edited.
+
+    Returns:
+        HttpResponse: The rendered reservation editing form or a redirect to the profile page.
+    """
     reservation = get_object_or_404(Reservation, pk=pk)
     error_message = None
     user = request.user
@@ -106,6 +135,20 @@ def edit_reservation(request, pk):
 
 @login_required
 def cancel_reservation(request, pk):
+    """
+    Handles the reservation cancellation process for logged-in users.
+
+    If the request method is POST, deletes the reservation and displays a success message.
+
+    If the request method is GET, displays the reservation cancellation confirmation form.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        pk (int): The primary key of the reservation to be cancelled.
+
+    Returns:
+        HttpResponse: The rendered reservation cancellation confirmation form or a redirect to the profile page.
+    """
     reservation = get_object_or_404(Reservation, id=pk)
     
     if request.method == 'POST':
@@ -118,6 +161,20 @@ def cancel_reservation(request, pk):
 
 @login_required
 def delete_reservation(request, pk):
+    """
+    Handles the reservation deletion process for logged-in users.
+
+    If the request method is POST, deletes the reservation and displays a success message.
+
+    If the request method is GET, displays the reservation deletion confirmation form.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        pk (int): The primary key of the reservation to be deleted.
+
+    Returns:
+        HttpResponse: The rendered reservation deletion confirmation form or a redirect to the profile page.
+    """
     reservation = get_object_or_404(Reservation, id=pk)
     
     if request.method == 'POST':
@@ -128,8 +185,16 @@ def delete_reservation(request, pk):
     # For GET request, render the confirmation page
     return render(request, 'delete_reservation_confirmation.html', {'reservation': reservation})
 
-
 def reservations_management(request):
+    """
+    Handles the reservation management view, allowing staff to search and filter reservations.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The rendered reservations management page with filtered reservations.
+    """
     reservations = Reservation.objects.all()
 
     search_name = request.GET.get('search_name')
@@ -158,6 +223,16 @@ def reservations_management(request):
     })
 
 def edit_reservation_status(request, reservation_id):
+    """
+    Handles the editing of reservation status.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        reservation_id (int): The primary key of the reservation to be edited.
+
+    Returns:
+        HttpResponse: The rendered reservation status editing form or a redirect to the reservation management page.
+    """
     reservation = get_object_or_404(Reservation, id=reservation_id)
     if request.method == 'POST':
         reservation.status = request.POST.get('status')
@@ -167,6 +242,17 @@ def edit_reservation_status(request, reservation_id):
     return render(request, 'edit_reservation_status.html', {'reservation': reservation})
 
 def change_reservation_status(request, reservation_id, status):
+    """
+    Changes the status of a reservation to the specified status.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        reservation_id (int): The primary key of the reservation to have its status changed.
+        status (str): The new status for the reservation ('approved', 'denied', 'pending').
+
+    Returns:
+        HttpResponse: A redirect to the reservation management page with a success or error message.
+    """
     reservation = get_object_or_404(Reservation, id=reservation_id)
     if status in ['approved', 'denied', 'pending']:
         reservation.status = status
