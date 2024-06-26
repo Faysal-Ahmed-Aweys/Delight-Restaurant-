@@ -7,45 +7,52 @@
     <h1 class="mb-4">Reservations Management</h1>
 
     <form method="GET" action="{% url 'Manage_reservations' %}" class="mb-4">
-        <div class="row">
-            <!-- search fields -->
-            <div class="col-md-3">
-                <input type="text" name="search_name" class="form-control" placeholder="Search by Name" value="{{ search_name|default_if_none:'' }}">
-            </div>
-            <div class="col-md-3">
-                <input type="date" name="search_date" class="form-control" value="{{ search_date }}">
-            </div>
-            <div class="col-md-3">
-                <button type="submit" class="btn bg-navy">Search</button>
-                <a href="{% url 'Manage_reservations' %}" class="btn btn-secondary">Reset</a>
-            </div>
-            <div class="col-md-3 text-right">
-                <a href="{% url 'Manage_reservations' %}?search_today=true" class="btn btn-info">Today's Reservations</a>
-            </div>
+        <fieldset>
+            <legend class="sr-only">Reservation Search</legend>
+            <div class="row">
+                <!-- search fields -->
+                <div class="col-md-3">
+                    <label for="search_name" class="sr-only">Search by Name</label>
+                    <input type="text" id="search_name" name="search_name" class="form-control" placeholder="Search by Name" value="{{ search_name|default_if_none:'' }}">
+                </div>
+                <div class="col-md-3">
+                    <label for="search_date" class="sr-only">Search by Date</label>
+                    <input type="date" id="search_date" name="search_date" class="form-control" value="{{ search_date }}">
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn bg-navy">Search</button>
+                    <a href="{% url 'Manage_reservations' %}" class="btn btn-secondary">Reset</a>
+                </div>
+                <div class="col-md-3 text-right">
+                    <a href="{% url 'Manage_reservations' %}?search_today=true" class="btn btn-info bg-dark">Today's Reservations</a>
+                </div>
 
-            <!-- status filter -->
-            <div class="col-md-3">
-                <select name="search_status" class="form-control">
-                    <option value="">Filter by Status</option>
-                    <option value="pending" {% if search_status == "pending" %}selected{% endif %}>Pending</option>
-                    <option value="approved" {% if search_status == "approved" %}selected{% endif %}>Approved</option>
-                    <option value="denied" {% if search_status == "denied" %}selected{% endif %}>Denied</option>
-                </select>
+                <!-- status filter -->
+                <div class="col-md-3">
+                    <label for="search_status" class="sr-only">Filter by Status</label>
+                    <select id="search_status" name="search_status" class="form-control">
+                        <option value="">Filter by Status</option>
+                        <option value="pending" {% if search_status == "pending" %}selected{% endif %}>Pending</option>
+                        <option value="approved" {% if search_status == "approved" %}selected{% endif %}>Approved</option>
+                        <option value="denied" {% if search_status == "denied" %}selected{% endif %}>Denied</option>
+                    </select>
+                </div>
             </div>
-        </div>
+        </fieldset>
     </form>
     
     <!-- reservations table -->
     <table class="table table-bordered table-striped">
+        <caption>List of Reservations</caption>
         <thead class="thead-dark">
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Number of People</th>
-                <th>Status</th>
-                <th>Actions</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+                <th scope="col">Number of People</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -59,11 +66,11 @@
                     <td>{{ reservation.get_status_display }}</td>
                     <td>
                         {% if reservation.status != "approved" and reservation.status != "denied" %}
-                            <a href="{% url 'change_reservation_status' reservation.id 'approved' %}" class="btn btn-success btn-sm">Approve</a>
-                            <a href="{% url 'change_reservation_status' reservation.id 'denied' %}" class="btn btn-danger btn-sm">Deny</a>
+                            <a href="{% url 'change_reservation_status' reservation.id 'approved' %}" class="btn btn-sm btn-success" role="button">Approve</a>
+                            <a href="{% url 'change_reservation_status' reservation.id 'denied' %}" class="btn btn-danger btn-sm" role="button">Deny</a>
                         {% endif %}
                         {% if reservation.status == "approved" or reservation.status == "denied" %}
-                            <a href="{% url 'edit_reservation_status' reservation.id %}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="{% url 'edit_reservation_status' reservation.id %}" class="btn btn-warning btn-sm" role="button">Edit</a>
                         {% endif %}
                     </td>
                 </tr>
