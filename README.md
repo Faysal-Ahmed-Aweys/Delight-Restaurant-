@@ -44,13 +44,18 @@ The final site pages are a bit different from the original wireframes.. I knew h
 
 
 #### Database Schema
+I used Django's built-in User Model for user accounts and created two custom models for reservations and the menu for this project. The reservation model is linked to the user model via a foreign key. To enhance the user experience, I set up the system to automatically fill in users' personal details from their user account information when making a reservation. Additionally, I created a separate model for storing menu items.
+
+The database schema shown below was designed using DrawSql.app. Due to limitations in the app, some field types could not be labeled correctly, as there was no option to override the available types. As a result, some fields used in the app models, such as cloudinary and email fields, are not included. Nevertheless, the diagram still shows the general layout of the models. The actual field choices are accurately reflected in the models within the project apps.
+
+![Database schema screenshot](assets/docs/screenshots/database_schema.png)
 
 ### Site Design
 
 #### Colour Scheme
 I used [Constras-grid](https://contrast-grid.eightshapes.com/) to choose colors that contrast well with each other and do not cause any contrast issues to the user whatsoever. The colors was suggested to me by my sister Maryan Aweys. They are the perfect colors for this site as they give the website cool, fancy and professional look and do not cause any contrast errors. 
 
-
+![Contrast grid screenshot](assets/docs/screenshots/contrast-grid.png)
 
 #### Typography
 As i was going for a professional fancy looking restaurant, i used the google font great vibes on the restaurant logo and name on hero section of the site which has given it a fancy look and alongside on the rest of the site, i used sans serif font which is neat and easy to read.
@@ -66,22 +71,22 @@ Throughout this project, I employed agile methodology by utilizing GitHub projec
 #### Current features common to all pages
 
 * ##### Header
-
+The header is fixed and includes navbar with links to ease the navigation to different pages by the user. 
 ![Navigation bar](assets/docs/screenshots/navbar_large_screens.png)
 ![Navigation bar small screens](assets/docs/screenshots/closed_small_screen_nav_bar.png)
 ![Navigation bar](assets/docs/screenshots/expanded_small_screen_nav_bar.png)
 
 * ##### The Footer
+The footer contains opening times, contact and address which are fictional and the social links do not take you to any pages that are related to the content of the website as the restaurant site is completely fictional and for educational purposes. I included these links to give my website some structure and to implement my skills. A short statement that states the purpose of the website is also included on the footer. 
 
 ![footer](assets/docs/screenshots/footer.png)
 
 #### Home Page
 * ##### Hero Section
-
+The Hero section includes Restaurant name, a quick link to booking page and a fictional restaurant hero image. I mentioned the websites i got the image from in the credits section.
 ![Hero section](assets/docs/screenshots/hero_section.png)
 
 * ##### About us and Menu Section
-
 ![About us and Menu section](assets/docs/screenshots/about_menu_section.png)
 
 * ##### Testimonials Section
@@ -89,7 +94,7 @@ Throughout this project, I employed agile methodology by utilizing GitHub projec
 ![Testimonials section](assets/docs/screenshots/testimonials_section.png)
 
 #### Menu Page
-
+The menu page showcases the restaurant offerings. Full details of the menu item can will be displayed in a modal when a user clicks on the item. This makes sure the page remains clean and customers can still view full details.
 ![Menu Page](assets/docs/screenshots/menu_page.png)
 
 * ##### Menu Item Modal
@@ -100,11 +105,15 @@ Throughout this project, I employed agile methodology by utilizing GitHub projec
 
 #### User Account Creation
 
+Users can create accounts.
+
 * ##### Signup Page
 
 ![Signup Page](assets/docs/screenshots/signup_page.png)
 
 #### User login and logout
+
+Registered users can login and logout.
 
 * ##### Login Page
 
@@ -116,15 +125,21 @@ Throughout this project, I employed agile methodology by utilizing GitHub projec
 
 #### Registered User Change Password
 
+Registered users can change their passwords.
+
 * ##### Change Password page
 
 ![Change Password Page](assets/docs/screenshots/change_password_page.png)
 
 #### Booking Page
 
-![Change Password Page](assets/docs/screenshots/reservation_page.png)
+The booking page contains a form that helps the user reserve a table for a certain date, time and for a certain number of people. only registered non staff members can visit this page. if staff members try to visit they are redirected to staff dashboard with a message that they are not authorised to view that page.
+
+![Booking page](assets/docs/screenshots/reservation_page.png)
 
 #### Editing Reservations
+
+Registered users can edit their booked reservations. 
 
 * ##### Edit Reservation Page
 
@@ -132,17 +147,22 @@ Throughout this project, I employed agile methodology by utilizing GitHub projec
 
 #### Canceling Reservations
 
+Registered users can cancel their booked reservations. 
+
 * ##### Cancel Reservation Page
 
 ![Cancel Reservation Page](assets/docs/screenshots/cancel_reservation_confirmation_page.png)
 
 #### Deleting Expired Reservations
 
+Registered users can delete their expired reservations. 
+
 * ##### Delete Reservation Page
 
 ![Delete Reservation Page](assets/docs/screenshots/delete_reservation_confirmation_page.png)
 
 #### Profile Page
+The profile page is divided into 2 sections, one which shows user accout information and buttons to perform crud operations on their user accounts and another which shows upcoming and expired reservations. 
 
 * ##### User Account Section.
 
@@ -160,11 +180,15 @@ Throughout this project, I employed agile methodology by utilizing GitHub projec
 
 #### Editing User Account
 
+Registered users can edit their user account details.
+
 * ##### Edit Account Page
 
 ![Edit Account Page](assets/docs/screenshots/edit_details_page.png)
 
 #### Deleting User Account
+
+Registered users can delete their user account details.
 
 * ##### Delete Account Confirmation Page
 
@@ -172,17 +196,25 @@ Throughout this project, I employed agile methodology by utilizing GitHub projec
 
 #### Staff Dashboard Page
 
+A staff dashboard is included in the project. When staff members login they are immediately redirected into this page. if they try to access home  page they are redirected or booking page, they are redirected with a message that they are not authorised to view that page.
+
 ![Staff Dashboard](assets/docs/screenshots/staff_dashboard_page.png)
 
 #### Add Menu item Page
+
+Staff members can add menu items to be viewed by customers.
 
 ![Add Menu Item](assets/docs/screenshots/staff_add_menu_item_page.png)
 
 #### Menu Management Page
 
+Staff members can manage menu items and can perform crud operations on them.
+
 ![Menu Management Page](assets/docs/screenshots/staff_menu_management_page.png)
 
 #### Reservations Management Page
+
+Staff members can manage reservations booked by customers by either approving or denying the reservation.
 
 ![Reservation Management](assets/docs/screenshots/staff_reservations_management_page.png)
 
@@ -210,12 +242,58 @@ Throughout this project, I employed agile methodology by utilizing GitHub projec
 ### Future Features and enhancements
 
 ## Technologies Used
+* [Balsamiq](https://balsamiq.com/wireframes/)
+    * Used to create the wireframes during the planning stage of the project.
+* [HTML5](https://html.spec.whatwg.org/)
+    * Used to create structure and content for the site.
+* [CSS](https://www.w3.org/Style/CSS/Overview.en.html)
+    * Used to add custom styles to the HTML.
+* [Django](https://www.djangoproject.com/)
+    * The python framework used to develop the site.
+* [Bootstrap](https://getbootstrap.com/)
+    * The CSS framework used to develop the site.
+* [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
+    * Used to provide functionality to the site.
+* [JavaScript](https://www.javascript.com/)
+    * Used to enhance functionality and interactivity.
+* [Cloudinary](https://cloudinary.com/)
+    * Used to host media files.
+* [ElephantSQL](https://www.elephantsql.com/)
+    * Used to host the database used for the site in production.
+* [Gitpod](https://www.gitpod.io/#get-started)
+    * Used to create code/content and file structure for the respository.
+* [GitHub](https://github.com/)
+    * Used to store the repository.
 
 ## Python Packages Used
+
+The packages installed for the is project can be found in [the requirements.txt](requirements.txt)
 
 ## Testing
 
 ## Deployment
+
+The project was deployed using [Heroku](https://heroku.com).
+
+NB - to ensure a successful deployment of the project in Heroku, you need to ensure that you create a Procfile and a requirements.txt file.
+
+Once you are certain that everything is ready to deploy the repo, you can do so through the following steps.
+
+1. Log in to Heroku or create an account if necessary.
+2. Click on the button labeled "New" from the dashboard in the top right corner and select the "Create new app" option in the drop-down menu.
+3. Enter a unique name for the application and select the region you are in.
+    * For this project, the unique name is "bundu-restaurant" and the region selected is Europe.
+4. Click on "create app".
+5. Navigate to the settings tab and click "Reveal config vars".
+6. Add the config vars necessary for the project.
+7. Navigate to the "Deploy" section by clicking the "Deploy" tab in the navbar.
+8. Select "GitHub" as the deployment method and click "Connect to GitHub".
+9. Search for the GitHub repository that you wish to deploy.
+10. Click on "connect" to link the repository to Heroku.
+11. Scroll down and click on "Deploy Branch" to manually deploy.
+12. Once the app has deployed successfully, Heroku will notify you and provide a button to view the app.
+
+NB - If you wish to rebuild the deployed app automatically every time you push to GitHub, you may click on "Enable Automatic Deploys" in Heroku.
 
 ## Credits
 
