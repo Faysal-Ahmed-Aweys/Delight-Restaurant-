@@ -18,16 +18,17 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
+    <!-- Header -->
     <header>
-    <!-- Navigation bar and links -->
-        <nav class="navbar navbar-expand-lg navbar-dark">
+        <!-- Navigation bar and links -->
+        <nav class="navbar navbar-expand-lg navbar-dark" role="navigation" aria-label="Main Navigation">
             <a class="navbar-brand" href="{% url 'home' %}">Delight</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
-                    {% if user.is_staff is False %}
+                    {% if not user.is_staff %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'home' %}">Home</a>
                     </li>
@@ -39,11 +40,11 @@
                     </li>
                     {% endif %}
                     {% if user.is_authenticated %}
-                    {% if user.is_staff %}
+                        {% if user.is_staff %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'staff_dashboard' %}">Dashboard</a>
                             </li>
-                            {% else %}
+                        {% else %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'profile' %}">Profile</a>
                             </li>
@@ -86,9 +87,9 @@
     {% endblock messages %}
 
     <!-- Main content section -->
-    <div class="main-content">
+    <main class="main-content">
         {% block content %}{% endblock content %}
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer class="footer text-white mt-auto">
@@ -111,10 +112,10 @@
                 <div class="col-md-4 mb-4 mb-md-0">
                     <h5 class="footer-heading">Follow Us</h5>
                     <ul class="list-unstyled footer-links">
-                        <li><a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-                        <li><a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
-                        <li><a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
-                        <li><a href="https://www.tiktok.com" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></li>
+                        <li><a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                        <li><a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="https://www.twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="https://www.tiktok.com" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i> TikTok</a></li>
                     </ul>
                 </div>
             </div>
