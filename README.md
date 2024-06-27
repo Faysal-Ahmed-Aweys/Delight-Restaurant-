@@ -238,6 +238,7 @@ Staff members can manage reservations booked by customers by either approving or
 
 
 #### warning message
+![not authorised warning](assets/docs/screenshots/not_authorised_waring_message.png)
 
 ### Future Features and enhancements
 
@@ -298,9 +299,32 @@ NB - If you wish to rebuild the deployed app automatically every time you push t
 ## Credits
 
 ### Honourable Mentions
+I would like to thank my mentor David Bowers for his incredible support throughout the course of my project.
+
+I would like to thank my sister Maryan Aweys who has helped me with choosing colors and designing my website.
 
 ### General reference
 
 ### Content
+* The social icon in the footer are from [Font Awesome](https://fontawesome.com/)
+* All fonts used are from [Google Fonts](https://fonts.google.com/)
 
 ### Media and Design
+* I used the [Favicon Generator](https://www.favicongenerator.com/) to generate the favicon.
+* I used [Balsamiq](https://balsamiq.com/) to create Wireframes.
+* fonts used are from [Google Fonts](https://fonts.google.com/).
+* i used [iloveimg](https://www.iloveimg/) to crop screenshots.
+* i used [contrast-grid.eighshapes.com](https://contrast-grid.eightshapes.com/) to check contast of colors used in the website.
+
+I got images i used in my hero page and menu items and favicon from the following sites:
+* [chatelaine](https://chatelaine.com/recipe/dinner/crispy-oven-fried-calamari/)
+* [unileverfoodsolutions](https://www.unileverfoodsolutions.com.ph/recipe/mushroom-soup-with-truffle-cream-foam-R0061893.html)
+* [laboiteny](https://www.laboiteny.com/blogs/recipes/pierre-burrata-caprese)
+* [eatingwell](https://www.eatingwell.com/recipe/8049326/pan-seared-salmon/)
+* [cookist](https://www.cookist.com/lobster-tail/)
+* [fitfood](https://fitfood.london/mediterranean-stuffed-bell-peppers-recipe/)
+* [pbs](https://www.pbs.org/food/recipes/single-serving-molten-lava-cake-recipe)
+* [learnitalianpod](https://www.learnitalianpod.com/2023/02/14/olive-garden-tiramisu-recipes/)
+* [allrecipes](https://www.allrecipes.com/recipe/231191/sweet-and-simple-lemon-tart/)
+* [uxwing](https://uxwing.com/alphabet-d-icon/)
+* [pexels](https://www.pexels.com/)
