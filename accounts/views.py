@@ -111,3 +111,4 @@ def delete_account(request, pk):
         else:
             return redirect('profile')
     return render(request, 'delete_account_confirmation.html', {'user': user})
+

@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = False
 ALLOWED_HOSTS = [
-    'delight-restaurant-3f0223201abb.herokuapp.com',
+    'delight-restaurant-3f0223201abb.herokuapp.com', '*'
 ]
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-faysalahmed-delightrest-9orh63mjs7r.ws-eu114.gitpod.io'
