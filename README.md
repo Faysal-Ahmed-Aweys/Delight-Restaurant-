@@ -242,6 +242,9 @@ Staff members can manage reservations booked by customers by either approving or
 
 ### Future Features and enhancements
 
+I have included future features that would be ideal for a restaurant reservation site in the for future development board in the [project kanban board](https://github.com/users/Faysal-Ahmed-Aweys/projects/6/). 
+Future enhancements that are not available in this version of the project are sending confirmation emails upon reservation booking and feedback on denied reservations and password reset emails as i have not configured email settings in my project. When you try to reset your password a 500 server error happens as a result of config settings not available in production.
+
 ## Technologies Used
 * [Balsamiq](https://balsamiq.com/wireframes/)
     * Used to create the wireframes during the planning stage of the project.
