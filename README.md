@@ -275,6 +275,8 @@ The packages installed for the is project can be found in [the requirements.txt]
 
 ## Testing
 
+all tests done can be found in  [Testing.md](Testing.md)
+
 ## Deployment
 
 The project was deployed using [Heroku](https://heroku.com).
