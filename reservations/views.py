@@ -57,12 +57,6 @@ def reserve(request):
             from_email = settings.EMAIL_HOST_USER
             to_email = user.email
 
-            # Debugging Information
-            print("Email Subject:", subject)
-            print("Email Message:", email_template)
-            print("From Email:", from_email)
-            print("To Email:", to_email)
-
             try:
                 # Send email
                 send_mail(
@@ -72,7 +66,6 @@ def reserve(request):
                     [to_email],
                     fail_silently=False
                 )
-                print("Email sent successfully")
             except Exception as e:
                 logging.error(f"Error sending email: {e}")
 
