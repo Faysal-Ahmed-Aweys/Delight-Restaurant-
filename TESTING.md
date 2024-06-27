@@ -10,6 +10,8 @@ All HTML code has been run through the [W3C HTML Validator](https://validator.w3
 
 * During validation, a few problems were presented but after correcting the relevant issues, no warnings or errors were shown.
 
+![Screenshot of html validation result](assets/docs/screenshots/html_validator.png)
+
 here are the errors and warnings presented:
 
 1. Heading levels (warning)
@@ -32,10 +34,20 @@ All custom CSS code has been run through the [W3C CSS Validator](https://jigsaw.
 
 * No errors were presented for custom CSS.
 
+![Screenshot of css validation result](assets/docs/screenshots/css_validator.png)
+
+
+### CI Python Linter Validation Results
+
+These results are not done as there was not enough time for me to complete them. however, I will be sure to include them in the future.
+
 ## Responsiveness Testing
 Tests were carried out throughout the development of the site using [Google Chrome Devtools](https://developer.chrome.com/docs/devtools/) to test responsiveness.
 
 The testing produced suitable results across multiple devices. The site has been adapted to be used on small to large screen sizes (from mobile phones to laptops). I think there are improvements that could be made in the future when it comes to responsive design but I am pleased with the results at the current moment.
+
+
+
 
 ## Manual Testing
 Throughout the development process, each user story was tested and developed using related acceptance criteria and tasks which can be found in the [kanbad board](https://github.com/users/Tony118g/projects/8).
@@ -111,6 +123,7 @@ The results vary between pages and some pages could be improved upon. As I was m
 
 Below is an example of the lighthouse results for the home page. Other page's results were slightly better or worse but were not majorly different.
 
+![Screenshot of lighthouse scores](assets/docs/screenshots/lighthouse_scores.png)
 
 ### Review from friends and family
 In addition to the above tests and procedures, the site was reviewed by my friends and family. This helped me get other people's opinions and receive real-world feedback. The feedback was mostly positive and helped confirm that the site met necessary standards.
